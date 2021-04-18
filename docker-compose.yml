@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=UsRPG#PV
+    ports: 
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=thiti180536@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=UsRPGADMIN#PV
+    ports:
+      - "5555:80"
+    restart: unless-stopped
+    volumes:
+      - pgadmin:/root/.pgadmin
+
+  webapi:
+    build:
+      context: devapi/
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  pgadmin:
+      
