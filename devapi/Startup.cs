@@ -53,7 +53,7 @@ namespace devapi
                 var password = uri.UserInfo.Split(':')[1];
                 var host = uri.Host;
                 
-                connectionString = $"Host={host}; Database={uri.AbsolutePath.Substring(1)}; Username={username}; Password={password} Port={uri.Port}; SSL Mode=Require; Trust Server Certificate=true;";
+                connectionString = $"Host={host}; Database={uri.AbsolutePath.Substring(1)}; Username={username}; Password={password}; Port={uri.Port}; SSL Mode=Require; Trust Server Certificate=true;";
                 
             }
 
